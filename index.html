@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <style>
+      .transdiv {
+        border: 1px solid #000;
+        height: 300px;
+        width: 90%;
+        margin: auto;
+        margin-bottom: 50px;
+      }
+      .square {
+        background: blue;
+        width: 200px;
+        height: 200px;
+        margin: auto;
+      }
+      /* div 1 fade */
+      .div1-enter-active, .div1-leave-active {
+        transition: all 2s;
+      }
+      .div1-enter, .div1-leave-to {
+        opacity: 0;
+      }
+      /* div 2 scale */
+      .div2-enter-active, .div2-leave-active {
+        transition: all 2s ease;
+      }
+      .div2-enter, .div2-leave-to {
+        transform: scale(2);
+        opacity: 0;
+      }
+      /* div 3 rotate */
+      .div3-enter-active{
+        transition: all 1.5s ease-out;
+      } 
+      .div3-leave-active {
+        transition: all 1.5s ease-in;
+      }
+      .div3-enter,
+      .div3-leave-to {
+        transform: rotate(1000deg);
+        opacity: 0;
+      }
+      /*  div 4 move*/
+      .div4-enter-active, .div4-leave-active{
+        transition: all 2s ease;
+      }
+
+      .div4-enter{
+        transform: translate(-100vh);
+        opacity: 0;
+      }
+      .div4-leave-to {
+        transform: translate(100vh);
+        opacity: 0;
+      }
+      </style>
+  </head>
+  <body>
+
+    <div id="app1">
+      <div class="transdiv">
+        <button @click="show1=!show1">fade in/out</button>
+        <transition name="div1">
+          <div class="div1 square" v-if="show1">i</div>
+        </transition>
+      </div>
+      <div class="transdiv">
+        <button @click="show2=!show2">scale out/in</button>
+        <transition name="div2">
+          <div class="div2 square" v-if="show2">i</div>
+        </transition>
+      </div>
+      <div class="transdiv">
+        <button @click="show3=!show3">rotate</button>
+        <transition name="div3">
+          <div class="div3 square" v-if="show3">i</div>
+        </transition>
+      </div>
+      <div class="transdiv">
+        <button @click="show4=!show4">move</button>
+        <transition name="div4">
+          <div class="div4 square" v-if="show4">i</div>
+        </transition>
+      </div>
+      <div class="transdiv">
+        <button @click="show5=!show5">without trans</button>
+        <transition name="div5">
+          <div class="div5 square" v-if="show5">i</div>
+        </transition>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el:"#app1",
+        data: {
+          demo:"hello",
+          show1: true,
+          show2: true,
+          show3: true,
+          show4: true,
+          show5: true
+        }
+      })
+    </script>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
